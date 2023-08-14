@@ -1,0 +1,6 @@
+[submodule "LAVIS"]
+	path = LAVIS
+	url = https://github.com/salesforce/LAVIS.git
+[submodule "MetaGPT"]
+	path = MetaGPT
+	url = https://github.com/geekan/MetaGPT.git
