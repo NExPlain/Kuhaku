@@ -15,6 +15,7 @@ class Game:
         self.missiles = []
         self.font = pygame.font.Font(None, 24)
         self.game_over = False
+        self.bg = pygame.image.load("background.png")
 
     def add_zombie(self, zombie: Zombie):
         self.zombies.append(zombie)
@@ -30,8 +31,12 @@ class Game:
             zombie.move()
         for missile in self.missiles:
             missile.move()
+        for obstacle in self.obstacles:
+            obstacle.move()
 
     def draw(self, screen):
+        # INSIDE OF THE GAME LOOP
+        screen.blit(self.bg, (0, 0))
         for zombie in self.zombies:
             zombie.draw(screen)
         for obstacle in self.obstacles:
@@ -65,8 +70,8 @@ class Game:
 
     def spawn_zombies_and_obstacles(self):
         if random.randint(0, 100) < 5:  # 10% chance to spawn a zombie
-            self.add_zombie(Zombie(random.randint(0, 800), 0, 2))
-        if random.randint(0, 100) < 1:  # 5% chance to spawn an obstacle
+            self.add_zombie(Zombie(random.randint(400, 600), 0, 2))
+        if random.randint(0, 1000) < 3:  # 5% chance to spawn an obstacle
             self.add_obstacle(
-                Obstacle(random.randint(0, 800), 0, random.randint(10, 20))
+                Obstacle(random.randint(400, 500), 0, random.randint(10, 20), 2)
             )
